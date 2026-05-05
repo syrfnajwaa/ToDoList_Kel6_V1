@@ -11,6 +11,7 @@ const DEMO = {
     kerja: "Kerja",
     pribadi: "Pribadi",
     belanja: "Belanja",
+    belajar: "Belajar",
     lainnya: "Lainnya",
     };
 
@@ -166,10 +167,10 @@ const DEMO = {
     const in3days = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
 
     tasks = [
-        { id: 1, text: "Review laporan keuangan Q2",         cat: "kerja",   deadline: toLocalISO(in3h),     done: false, time: nowTime() },
+        { id: 1, text: "Belajar UAS Praktikum PBW",           cat: "belajar", deadline: toLocalISO(in3h),     done: false, time: nowTime() },
         { id: 2, text: "Beli bahan masak untuk makan malam", cat: "belanja", deadline: toLocalISO(tomorrow), done: false, time: nowTime() },
         { id: 3, text: "Olahraga pagi 30 menit",             cat: "pribadi", deadline: toLocalISO(yesterday),done: true,  time: nowTime() },
-        { id: 4, text: "Meeting tim product jam 14.00",       cat: "kerja",   deadline: toLocalISO(in3days),  done: false, time: nowTime() },
+        { id: 4, text: "Project Akhir Visualisasi Data",      cat: "belajar", deadline: toLocalISO(in3days),  done: false, time: nowTime() },
         { id: 5, text: "Baca buku pengembangan diri",         cat: "pribadi", deadline: "",                  done: false, time: nowTime() },
     ];
     }
