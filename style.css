@@ -487,8 +487,7 @@ body::before {
   align-items: center;
 }
 
-.category-select,
-.priority-select {
+.category-select {
   background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: var(--r3);
@@ -501,13 +500,152 @@ body::before {
   transition: border-color 0.2s;
 }
 
-.category-select:focus,
-.priority-select:focus {
+.category-select:focus {
   border-color: var(--accent);
 }
-.category-select option,
-.priority-select option {
+.category-select option {
   background: #1c1c2a;
+}
+
+/* ─── DEADLINE INPUT ─── */
+.deadline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r3);
+  padding: 0.4rem 0.75rem;
+  transition: border-color 0.2s;
+  flex: 1;
+}
+
+.deadline-wrap:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200, 240, 78, 0.08);
+}
+
+.deadline-label {
+  font-size: 0.78rem;
+  color: var(--text3);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.deadline-input {
+  background: transparent;
+  border: none;
+  color: var(--text2);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  outline: none;
+  cursor: pointer;
+  min-width: 0;
+  flex: 1;
+  color-scheme: dark;
+}
+
+.deadline-input::-webkit-calendar-picker-indicator {
+  filter: invert(0.6);
+  cursor: pointer;
+}
+
+/* ─── DEADLINE BADGE ─── */
+.deadline-badge {
+  font-size: 0.7rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 100px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s;
+}
+
+/* ✓ Done — neutral grey */
+.deadline-done {
+  background: rgba(255,255,255,0.05);
+  color: var(--text3);
+  border: 1px solid var(--border);
+}
+
+/* 📅 OK — lebih dari 7 hari */
+.deadline-ok {
+  background: rgba(155, 224, 248, 0.10);
+  color: var(--accent2);
+  border: 1px solid rgba(155, 224, 248, 0.18);
+}
+
+/* ⏳ Soon — ≤ 7 hari */
+.deadline-soon {
+  background: rgba(155, 224, 248, 0.12);
+  color: var(--accent2);
+  border: 1px solid rgba(155, 224, 248, 0.22);
+}
+
+/* ⏳ Besok */
+.deadline-tomorrow {
+  background: rgba(200, 240, 78, 0.10);
+  color: var(--accent);
+  border: 1px solid rgba(200, 240, 78, 0.22);
+}
+
+/* 🔥 Hari ini (< 24j, ≥ 1j) */
+.deadline-today {
+  background: rgba(255, 179, 71, 0.15);
+  color: #ffb347;
+  border: 1px solid rgba(255, 179, 71, 0.28);
+}
+
+/* 🔥 Urgent (< 1 jam) */
+.deadline-urgent {
+  background: rgba(255, 120, 71, 0.18);
+  color: #ff7847;
+  border: 1px solid rgba(255, 120, 71, 0.35);
+}
+
+/* ⚠️ Overdue */
+.deadline-overdue {
+  background: rgba(255, 107, 107, 0.14);
+  color: var(--danger);
+  border: 1px solid rgba(255, 107, 107, 0.28);
+}
+
+/* Pulse animation untuk urgent & overdue */
+.badge-pulse {
+  animation: badge-glow 1.6s ease-in-out infinite;
+}
+
+@keyframes badge-glow {
+  0%, 100% { opacity: 1; box-shadow: none; }
+  50%       { opacity: 0.85; box-shadow: 0 0 8px currentColor; }
+}
+
+/* Task item left-border colors by urgency */
+.task-item.overdue-item {
+  border-color: rgba(255, 107, 107, 0.25);
+}
+.task-item.overdue-item::before {
+  background: var(--danger);
+  animation: pulse-red 1.5s ease-in-out infinite;
+}
+
+.task-item.urgent-item {
+  border-color: rgba(255, 120, 71, 0.25);
+}
+.task-item.urgent-item::before {
+  background: #ff7847;
+  animation: pulse-red 1.2s ease-in-out infinite;
+}
+
+.task-item.today-item::before {
+  background: #ffb347;
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
 }
 
 /* ─── FILTER TABS ─── */
@@ -581,11 +719,8 @@ body::before {
   bottom: 0;
   width: 3px;
   border-radius: 2px 0 0 2px;
+  background: var(--border2);
 }
-
-.task-item.priority-high::before { background: var(--danger); }
-.task-item.priority-med::before  { background: #ffb347; }
-.task-item.priority-low::before  { background: var(--accent2); }
 
 .task-item:hover {
   border-color: var(--border2);
