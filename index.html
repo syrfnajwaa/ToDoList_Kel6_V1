@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taskly — To Do List</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <!-- ══════════ LOGIN PAGE ══════════ -->
+    <div id="login-page" class="page">
+      <div class="login-card">
+        <div class="login-brand">
+          <div class="logo-icon">✦</div>
+          <h1>Taskly</h1>
+          <p>Selesaikan harimu dengan elegan</p>
+        </div>
+
+        <div id="login-error" class="login-error">
+          ✕ &nbsp; Email atau password salah!
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="nama@email.com"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" />
+        </div>
+
+        <button class="login-btn" onclick="doLogin()">Masuk ke Taskly →</button>
+
+        <div class="login-divider"><span>demo akun</span></div>
+
+        <div class="demo-hint">
+          Gunakan email: <strong>demo@taskly.id</strong><br />
+          dan password: <strong>taskly123</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ APP PAGE ══════════ -->
+    <div id="app-page" class="page">
+      <div class="app-wrapper">
+        <!-- Header -->
+        <div class="app-header">
+          <div class="app-logo">✦ Taskly</div>
+          <div class="user-pill" onclick="doLogout()">
+            <div class="user-avatar" id="user-avatar">DM</div>
+            <span class="user-name" id="user-name-display">Demo</span>
+            <span class="logout-btn">keluar</span>
+          </div>
+        </div>
+
+        <!-- Greeting -->
+        <div class="greeting">
+          <h2>Halo, <span id="greeting-name">Demo</span> 👋</h2>
+          <p id="greeting-date">Hari ini adalah hari yang produktif!</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-num total" id="stat-total">0</div>
+            <div class="stat-lbl">Total</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num done" id="stat-done">0</div>
+            <div class="stat-lbl">Selesai</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num pend" id="stat-pending">0</div>
+            <div class="stat-lbl">Tertunda</div>
+          </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-section">
+          <div class="progress-header">
+            <span class="progress-label">Progress hari ini</span>
+            <span class="progress-pct" id="progress-pct">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div class="input-section">
+          <div class="input-row">
+            <input
+              type="text"
+              class="task-input"
+              id="task-input"
+              placeholder="Tambah tugas baru..."
+              onkeydown="handleKey(event)"
+            />
+            <button class="add-btn" onclick="addTask()">+ Tambah</button>
+          </div>
+          <div class="input-extras">
+            <select class="category-select" id="cat-select">
+              <option value="kerja">💼 Kerja</option>
+              <option value="pribadi">🌸 Pribadi</option>
+              <option value="belanja">🛒 Belanja</option>
+              <option value="lainnya">✦ Lainnya</option>
+            </select>
+            <select class="priority-select" id="pri-select">
+              <option value="high">🔴 Tinggi</option>
+              <option value="med" selected>🟡 Sedang</option>
+              <option value="low">🔵 Rendah</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+          <button class="tab-btn active" onclick="setFilter('all', this)">Semua</button>
+          <button class="tab-btn" onclick="setFilter('pending', this)">Aktif</button>
+          <button class="tab-btn" onclick="setFilter('done', this)">Selesai</button>
+          <button class="tab-btn" onclick="setFilter('high', this)">Prioritas</button>
+        </div>
+
+        <!-- Task List -->
+        <div class="task-list" id="task-list"></div>
+        <div class="empty-state" id="empty-state">
+          <span class="empty-icon">📋</span>
+          <h3>Tidak ada tugas</h3>
+          <p>Waktunya istirahat, atau tambah tugas baru!</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
